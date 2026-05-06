@@ -1,7 +1,12 @@
-import { cacheLife } from 'next/cache'
- 
-export async function getUsers() {
-  'use cache'
-  cacheLife('hours')
-  return db.query('SELECT * FROM users')
+
+export const getUsers = async () => {
+    const res = await fetch("http://localhost:5000/users");
+    const data = await res.json();
+    return data;
+}
+export const getUserById = async (userid) => {
+    const res = await fetch(`http://localhost:5000/users/${userid}`);
+    const data = await res.json();
+    return data;
+    
 }
